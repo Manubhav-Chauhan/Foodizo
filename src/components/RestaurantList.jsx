@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import RestaurantCard from './RestaurantCard'
 
-const RestaurantList = ({ searchQuery, onAddToCart }) => {
+const RestaurantList = ({ searchQuery, onAddToCart, onAddToFavorites, favorites, currentUser }) => {
   const [selectedCategory, setSelectedCategory] = useState('all')
 
   const restaurants = [
@@ -143,7 +143,7 @@ const RestaurantList = ({ searchQuery, onAddToCart }) => {
               onClick={() => setSelectedCategory(category.id)}
               className={`px-4 py-2 rounded-full whitespace-nowrap font-medium transition-colors ${
                 selectedCategory === category.id
-                  ? 'bg-primary-600 text-white'
+                  ? 'bg-orange-600 text-white'
                   : 'bg-white text-gray-700 hover:bg-gray-100'
               }`}
             >
@@ -159,13 +159,19 @@ const RestaurantList = ({ searchQuery, onAddToCart }) => {
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredRestaurants.map((restaurant) => (
-              <RestaurantCard
-                key={restaurant.id}
-                restaurant={restaurant}
-                onAddToCart={onAddToCart}
-              />
-            ))}
+            {filteredRestaurants.map((restaurant) => {
+              const isFavorite = favorites?.some(fav => fav.restaurantId === restaurant.id && fav.type === 'restaurant') || false
+              return (
+                <RestaurantCard
+                  key={restaurant.id}
+                  restaurant={restaurant}
+                  onAddToCart={onAddToCart}
+                  onAddToFavorites={onAddToFavorites}
+                  isFavorite={isFavorite}
+                  currentUser={currentUser}
+                />
+              )
+            })}
           </div>
         )}
       </div>

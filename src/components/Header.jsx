@@ -1,13 +1,24 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-const Header = ({ cartItemsCount, onCartClick, searchQuery, onSearchChange }) => {
+const Header = ({ 
+  cartItemsCount, 
+  onCartClick, 
+  searchQuery, 
+  onSearchChange, 
+  currentUser, 
+  onLoginClick, 
+  onLogout, 
+  onProfileClick 
+}) => {
+  const [showUserMenu, setShowUserMenu] = useState(false)
+
   return (
     <header className="bg-white shadow-md sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center">
-            <h1 className="text-2xl font-bold text-primary-600">MB ZONE</h1>
+            <h1 className="text-2xl font-bold text-orange-600">MB ZONE</h1>
           </div>
 
           {/* Location */}
@@ -32,28 +43,98 @@ const Header = ({ cartItemsCount, onCartClick, searchQuery, onSearchChange }) =>
                 placeholder="Search for restaurants and food"
                 value={searchQuery}
                 onChange={(e) => onSearchChange(e.target.value)}
-                className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-primary-500 focus:border-primary-500"
+                className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-orange-500 focus:border-orange-500"
               />
             </div>
           </div>
 
           {/* Right side buttons */}
           <div className="flex items-center space-x-4">
-            {/* Sign In */}
-            <button className="text-gray-700 hover:text-primary-600 font-medium">
-              Sign In
-            </button>
+            {/* User Authentication */}
+            {currentUser ? (
+              <div className="relative">
+                <button
+                  onClick={() => setShowUserMenu(!showUserMenu)}
+                  className="flex items-center space-x-2 text-gray-700 hover:text-orange-600 font-medium"
+                >
+                  <div className="w-8 h-8 bg-orange-600 rounded-full flex items-center justify-center text-white font-semibold">
+                    {currentUser.firstName?.charAt(0) || 'U'}
+                  </div>
+                  <span className="hidden md:block">{currentUser.firstName}</span>
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+
+                {showUserMenu && (
+                  <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50">
+                    <button
+                      onClick={() => {
+                        onProfileClick()
+                        setShowUserMenu(false)
+                      }}
+                      className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    >
+                      My Profile
+                    </button>
+                    <button
+                      onClick={() => {
+                        onProfileClick()
+                        setShowUserMenu(false)
+                      }}
+                      className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    >
+                      Order History
+                    </button>
+                    <button
+                      onClick={() => {
+                        onProfileClick()
+                        setShowUserMenu(false)
+                      }}
+                      className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    >
+                      Favorites
+                    </button>
+                    <hr className="my-1" />
+                    <button
+                      onClick={() => {
+                        onLogout()
+                        setShowUserMenu(false)
+                      }}
+                      className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    >
+                      Sign Out
+                    </button>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <button 
+                onClick={onLoginClick}
+                className="text-gray-700 hover:text-orange-600 font-medium"
+              >
+                Sign In
+              </button>
+            )}
+
+            {/* Offers Badge */}
+            <div className="hidden md:flex items-center space-x-1 bg-green-100 text-green-800 px-2 py-1 rounded-full text-sm">
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
+              </svg>
+              <span className="font-medium">Offers</span>
+            </div>
 
             {/* Cart */}
             <button
               onClick={onCartClick}
-              className="relative p-2 text-gray-700 hover:text-primary-600 transition-colors"
+              className="relative p-2 text-gray-700 hover:text-orange-600 transition-colors"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13v6a2 2 0 002 2h6a2 2 0 002-2v-6" />
               </svg>
               {cartItemsCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-primary-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                <span className="absolute -top-1 -right-1 bg-orange-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
                   {cartItemsCount}
                 </span>
               )}
@@ -75,10 +156,18 @@ const Header = ({ cartItemsCount, onCartClick, searchQuery, onSearchChange }) =>
             placeholder="Search for restaurants and food"
             value={searchQuery}
             onChange={(e) => onSearchChange(e.target.value)}
-            className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-primary-500 focus:border-primary-500"
+            className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-orange-500 focus:border-orange-500"
           />
         </div>
       </div>
+
+      {/* Click outside to close user menu */}
+      {showUserMenu && (
+        <div
+          className="fixed inset-0 z-40"
+          onClick={() => setShowUserMenu(false)}
+        ></div>
+      )}
     </header>
   )
 }
