@@ -2,7 +2,8 @@ import React from 'react'
 
 const Hero = () => {
   return (
-    <section className="bg-gradient-to-r from-green-500 to-orange-600 text-white py-16">
+    <section className="bg-gradient-to-r from-primary-500 to-green-600 text-white py-20">
+      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <h1 className="text-4xl md:text-6xl font-bold mb-4">
