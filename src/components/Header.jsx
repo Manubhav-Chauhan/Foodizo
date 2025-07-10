@@ -18,7 +18,7 @@ const Header = ({
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center">
-            <h1 className="text-2xl font-bold text-orange-600">MB ZONE</h1>
+            <h1 className="text-2xl font-bold text-green-600">Foodizo</h1>
           </div>
 
           {/* Location */}
