@@ -16,12 +16,12 @@ const Header = ({
     <header className="bg-white shadow-md sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
+         
           <div className="flex items-center">
-            <h1 className="text-2xl font-bold text-green-600">Foodizo</h1>
+            <h1 className="text-2xl font-bold text-green-500">Foodizo</h1>
           </div>
 
-          {/* Location */}
+        
           <div className="hidden md:flex items-center space-x-2 text-gray-700">
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
@@ -30,8 +30,7 @@ const Header = ({
             <span className="text-sm">Deliver to: <strong>Current Location</strong></span>
           </div>
 
-          {/* Search Bar */}
-          <div className="flex-1 max-w-lg mx-4">
+          <div className="flex-1 max-w-lg mx-">
             <div className="relative">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                 <svg className="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -48,9 +47,8 @@ const Header = ({
             </div>
           </div>
 
-          {/* Right side buttons */}
           <div className="flex items-center space-x-4">
-            {/* User Authentication */}
+            
             {currentUser ? (
               <div className="relative">
                 <button
@@ -117,7 +115,7 @@ const Header = ({
               </button>
             )}
 
-            {/* Offers Badge */}
+           
             <div className="hidden md:flex items-center space-x-1 bg-green-100 text-green-800 px-2 py-1 rounded-full text-sm">
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
@@ -125,7 +123,7 @@ const Header = ({
               <span className="font-medium">Offers</span>
             </div>
 
-            {/* Cart */}
+          
             <button
               onClick={onCartClick}
               className="relative p-2 text-gray-700 hover:text-orange-600 transition-colors"
@@ -143,25 +141,9 @@ const Header = ({
         </div>
       </div>
 
-      {/* Mobile search bar */}
-      <div className="md:hidden px-4 pb-4">
-        <div className="relative">
-          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-            <svg className="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-            </svg>
-          </div>
-          <input
-            type="text"
-            placeholder="Search for restaurants and food"
-            value={searchQuery}
-            onChange={(e) => onSearchChange(e.target.value)}
-            className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-orange-500 focus:border-orange-500"
-          />
-        </div>
-      </div>
+      
 
-      {/* Click outside to close user menu */}
+     
       {showUserMenu && (
         <div
           className="fixed inset-0 z-40"
