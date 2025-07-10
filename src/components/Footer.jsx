@@ -7,7 +7,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="col-span-1 md:col-span-2">
-            <h3 className="text-2xl font-bold mb-4">MB ZONE</h3>
+            <h3 className="text-2xl font-bold mb-4">Foodizo</h3>
             <p className="text-gray-400 mb-4">
               Order food from your favourite restaurants and get it delivered to your doorstep. 
               Fast, reliable, and delicious food delivery service.
@@ -55,7 +55,7 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-          <p>&copy; 2024 MB ZONE. All rights reserved.</p>
+          <p>&copy; 2025 Foodizo. All rights reserved.</p>
         </div>
       </div>
     </footer>
