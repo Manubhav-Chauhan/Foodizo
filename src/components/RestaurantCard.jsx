@@ -118,11 +118,7 @@ const RestaurantCard = ({ restaurant, onAddToCart, onAddToFavorites, isFavorite,
                             <p className="text-gray-600 text-sm mb-2">{item.description}</p>
                             <span className="text-lg font-semibold text-green-600">₹{item.price}</span>
                           </div>
-                          <img
-                            src={`https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=100&h=100&fit=crop`}
-                            alt={item.name}
-                            className="w-20 h-20 object-cover rounded-lg ml-4"
-                          />
+                         
                         </div>
                         
                         <div className="flex items-center justify-between mt-3">
